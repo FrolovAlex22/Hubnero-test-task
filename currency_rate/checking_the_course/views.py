@@ -30,9 +30,7 @@ def get_current_rate(request):
             }
         )
 
-    # Запрашиваем курс с сайта
-    url = "https://openexchangerates.org/api/latest.json"
-
+    # Запрашиваем курс с сайта, формируем список за последние 10 запросов
     try:
         rate = currency_rate(URL, API_ID)
         СourseRequest.objects.create(
@@ -40,8 +38,6 @@ def get_current_rate(request):
         )
         cache.set("cached_course", rate, timeout=10)
         ten_latest_requests = cache.get("ten_latest_requests", [])
-
-        # Добавляем новый запрос с московским временем
         ten_latest_requests.append(
             {
                 "request_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -51,10 +47,8 @@ def get_current_rate(request):
         if len(ten_latest_requests) > 10:
             ten_latest_requests = ten_latest_requests[-10:]
 
-        # Обновляем кеш с новыми данными
+        # Обновляем кеш, возвращаем данные
         cache.set("ten_latest_requests", ten_latest_requests, timeout=None)
-        print(type(ten_latest_requests))
-        # Возвращаем полученный курс и указываем источник данных
         return JsonResponse(
             {"ten_latest_requests": ten_latest_requests[::-1],}
         )
