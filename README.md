@@ -36,7 +36,7 @@
 
 ## Технологии
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://www.python.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-blue?logo=PostgreSQL&logoColor=white/)](https://www.postgresql.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-blue?logo=PostgreSQL&logoColor=white)](https://www.postgresql.org/)
 [![Django](https://img.shields.io/badge/Django-%23092E20?logo=django)](https://www.djangoproject.com/)
 
 ## Запуск проекта локально
