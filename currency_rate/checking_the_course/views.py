@@ -50,7 +50,7 @@ def get_current_rate(request):
         # Обновляем кеш, возвращаем данные
         cache.set("ten_latest_requests", ten_latest_requests, timeout=None)
         return JsonResponse(
-            {"ten_latest_requests": ten_latest_requests[::-1],}
+            {"ten_latest_requests": ten_latest_requests[::-1], }
         )
     except Exception as e:
         return HttpResponse(f"Error: {e}", status=500)
